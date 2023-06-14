@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/datos_productos.dart';
 
 class Inventario extends StatefulWidget {
   const Inventario({super.key});
@@ -8,31 +9,6 @@ class Inventario extends StatefulWidget {
 }
 
 class _InventarioState extends State<Inventario> {
-  final itemPrueba = [
-    'Albania',
-    'Andorra',
-    'Armenia',
-    'Austria',
-    'Azerbaijan',
-    'Belarus',
-    'Belgium',
-    'Bosnia and Herzegovina',
-    'Bulgaria',
-    'Croatia',
-    'Cyprus',
-    'Albania',
-    'Andorra',
-    'Armenia',
-    'Austria',
-    'Azerbaijan',
-    'Belarus',
-    'Belgium',
-    'Bosnia and Herzegovina',
-    'Bulgaria',
-    'Croatia',
-    'Cyprus'
-  ];
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
