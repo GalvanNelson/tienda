@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:tienda/screens/home_screen.dart';
 import 'package:tienda/services/firebase_options.dart';
+import 'screens/index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +19,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tienda',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/crearComida': (context) => const GuardarComida()
+      },
       theme: ThemeData(primarySwatch: Colors.green),
-      home: const HomeScreen(),
     );
   }
 }
