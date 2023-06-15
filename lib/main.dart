@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/crearComida': (context) => const GuardarComida()
+        '/crearComida': (context) => const GuardarComida(),
+        '/editarComida': (context) => const EditarComida()
       },
       theme: ThemeData(primarySwatch: Colors.green),
     );

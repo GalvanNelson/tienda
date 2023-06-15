@@ -19,7 +19,60 @@ class _ListarComidaState extends State<ListarComida> {
             return ListView.builder(
               itemCount: snapshot.data?.length,
               itemBuilder: (context, index) {
-                return Text(snapshot.data?[index]['nombre']);
+                //* Dismissible crear el efecto de eliminar un dato deslizando el item de izquierda a derecha
+                return Dismissible(
+                  onDismissed: (direction) async {
+                    await eliminarComida(snapshot.data?[index]['uid']);
+                    snapshot.data?.removeAt(index);
+                  },
+                  confirmDismiss: (direction) async {
+                    bool result = false;
+                    result = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        //* Se crear un modal para confirmar la eliminacion de un item
+                        return AlertDialog(
+                          title: Text(
+                              '¿Desea eliminar ${snapshot.data?[index]['nombre']}?'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  return Navigator.pop(context, false);
+                                },
+                                child: const Text('Cancelar')),
+                            TextButton(
+                                onPressed: () {
+                                  return Navigator.pop(context, true);
+                                },
+                                child: const Text('Confirmar'))
+                          ],
+                        );
+                      },
+                    );
+
+                    return result;
+                  },
+                  background: Container(
+                    color: Colors.red,
+                    child: const Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                  ),
+                  direction: DismissDirection.startToEnd,
+                  key: Key(snapshot.data?[index]['uid']),
+                  child: ListTile(
+                    title: Text(snapshot.data?[index]['nombre']),
+                    onTap: () async {
+                      await Navigator.pushNamed(context, '/editarComida',
+                          arguments: {
+                            'name': snapshot.data?[index]['nombre'],
+                            'uid': snapshot.data?[index]['uid']
+                          });
+                      setState(() {});
+                    },
+                  ),
+                );
               },
             );
           } else {
