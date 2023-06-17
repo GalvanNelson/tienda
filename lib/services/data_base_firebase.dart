@@ -14,7 +14,11 @@ Future<List> getComida() async {
   QuerySnapshot queryComida = await collectionReferenceComida.get();
   for (var element in queryComida.docs) {
     final Map<String, dynamic> data = element.data() as Map<String, dynamic>;
-    final comida = {'nombre': data['nombre'], 'uid': element.id};
+    final comida = {
+      'nombre': data['nombre'],
+      'uid': element.id,
+      'precio': data['precio']
+    };
     getComidas.add(comida);
   }
 
@@ -27,8 +31,12 @@ Future<void> crearComida(String nameComida) async {
 }
 
 //* Actualizar comidas
-Future<void> actualizarComida(String uid, String newName) async {
-  await dbTienda.collection("comidas").doc(uid).set({'nombre': newName});
+Future<void> actualizarComida(
+    String uid, String newName, String newPrecio) async {
+  await dbTienda
+      .collection("comidas")
+      .doc(uid)
+      .set({'nombre': newName, 'precio': newPrecio});
 }
 
 //* Eliminar comida

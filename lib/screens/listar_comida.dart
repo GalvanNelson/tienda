@@ -63,11 +63,13 @@ class _ListarComidaState extends State<ListarComida> {
                   key: Key(snapshot.data?[index]['uid']),
                   child: ListTile(
                     title: Text(snapshot.data?[index]['nombre']),
+                    subtitle: Text(snapshot.data?[index]['precio']),
                     onTap: () async {
                       await Navigator.pushNamed(context, '/editarComida',
                           arguments: {
                             'name': snapshot.data?[index]['nombre'],
-                            'uid': snapshot.data?[index]['uid']
+                            'uid': snapshot.data?[index]['uid'],
+                            'precio': snapshot.data?[index]['precio']
                           });
                       setState(() {});
                     },
