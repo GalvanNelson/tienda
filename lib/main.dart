@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:tienda/models/cart_model.dart';
 import 'package:tienda/services/firebase_options.dart';
 import 'screens/index.dart';
 
@@ -16,16 +18,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tienda',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/crearComida': (context) => const GuardarComida(),
-        '/editarComida': (context) => const EditarComida()
-      },
-      theme: ThemeData(primarySwatch: Colors.green),
+    return ChangeNotifierProvider(
+      create: (context) => CartModel(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Tienda',
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomeScreen(),
+          '/crearComida': (context) => const GuardarComida(),
+          '/editarComida': (context) => const EditarComida()
+        },
+        theme: ThemeData(primarySwatch: Colors.green),
+      ),
     );
   }
 }

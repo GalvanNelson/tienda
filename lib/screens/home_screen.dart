@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tienda/screens/listar_comida.dart';
-import 'package:tienda/screens/inventario.dart';
+import 'package:tienda/screens/index.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +13,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = <Widget>[
     const Inventario(),
-    const ListarComida()
+    const ListarComida(),
+    const PedidosComida()
   ];
 
   @override
@@ -36,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.shopping_bag), label: 'Articulos'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.food_bank), label: 'Comidas'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.food_bank_outlined), label: 'pedidos')
           ]),
     );
   }
