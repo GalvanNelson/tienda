@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:tienda/models/cart_model.dart';
-import '../widgets/index.dart';
-import 'index.dart';
+import '../../widgets/index.dart';
+import '../index.dart';
 
 class GaleriaComida extends StatelessWidget {
   const GaleriaComida({super.key});

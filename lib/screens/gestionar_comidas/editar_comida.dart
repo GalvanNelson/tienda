@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tienda/services/data_base_firebase.dart';
-
-import '../widgets/index.dart';
+import '../../widgets/index.dart';
 
 class EditarComida extends StatefulWidget {
   const EditarComida({super.key});

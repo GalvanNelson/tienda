@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/datos_productos.dart';
+import '../../utils/datos_productos.dart';
 
 class Inventario extends StatefulWidget {
   const Inventario({super.key});
