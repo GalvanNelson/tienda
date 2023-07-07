@@ -12,9 +12,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectIndex = 0;
 
   final List<Widget> _pages = <Widget>[
-    const Inventario(),
+    //const Inventario(),
     const ListarComida(),
-    const GaleriaComida()
+    const GaleriaComida(),
+    const GaleriaFireBase(),
   ];
 
   @override
@@ -33,11 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag), label: 'Articulos'),
-            BottomNavigationBarItem(
                 icon: Icon(Icons.food_bank), label: 'Comidas'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.food_bank_outlined), label: 'pedidos')
+                icon: Icon(Icons.food_bank_outlined), label: 'pedidos'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.photo), label: 'FirebaseImagenes')
           ]),
     );
   }

@@ -6,15 +6,12 @@ class GregoryItemTitle extends StatelessWidget {
   final String itemPrice;
   final String imagePath;
   void Function()? onPressed;
-  // ignore: prefer_typing_uninitialized_variables
-  final color;
 
   GregoryItemTitle(
       {super.key,
       required this.itemName,
       required this.itemPrice,
       required this.imagePath,
-      required this.color,
       required this.onPressed});
 
   @override
@@ -24,7 +21,7 @@ class GregoryItemTitle extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: color[100], borderRadius: BorderRadius.circular(12)),
+            color: Colors.greenAccent, borderRadius: BorderRadius.circular(12)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -35,7 +32,7 @@ class GregoryItemTitle extends StatelessWidget {
             //* price + button
             MaterialButton(
               onPressed: onPressed,
-              color: color[800],
+              color: Colors.blueGrey,
               child: Text(
                 "Bs $itemPrice",
                 style: const TextStyle(

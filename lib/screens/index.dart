@@ -5,3 +5,4 @@ export './gestionar_comidas/crear_comida.dart';
 export './gestionar_comidas/editar_comida.dart';
 export 'gestionar_pedidios/galeria_comida.dart';
 export 'gestionar_pedidios/cart_page.dart';
+export 'galeria_firebase.dart';

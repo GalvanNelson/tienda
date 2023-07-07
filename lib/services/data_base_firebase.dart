@@ -15,8 +15,8 @@ Future<List> getComida() async {
   for (var element in queryComida.docs) {
     final Map<String, dynamic> data = element.data() as Map<String, dynamic>;
     final comida = {
-      'nombre': data['nombre'],
       'uid': element.id,
+      'nombre': data['nombre'],
       'precio': data['precio']
     };
     getComidas.add(comida);

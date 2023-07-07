@@ -34,12 +34,10 @@ class GaleriaComida extends StatelessWidget {
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Text(
-                    "Let's order fresh items for you",
+                    "Pedidos",
                     style: GoogleFonts.notoSerif(
                         fontSize: 36, fontWeight: FontWeight.bold),
                   )),
-              const SizedBox(height: 24),
-              //* divider
               const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.0),
                   child: Divider()),
@@ -48,7 +46,7 @@ class GaleriaComida extends StatelessWidget {
               const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.0),
                   child: Text(
-                    "Fresh Items",
+                    "Platillos",
                     style: TextStyle(fontSize: 16),
                   )),
               Expanded(child: Consumer<CartModel>(
@@ -63,7 +61,6 @@ class GaleriaComida extends StatelessWidget {
                           itemName: value.shopItems[index][0],
                           itemPrice: value.shopItems[index][1],
                           imagePath: value.shopItems[index][2],
-                          color: value.shopItems[index][3],
                           onPressed: () {
                             Provider.of<CartModel>(context, listen: false)
                                 .addItemToCart(index);
