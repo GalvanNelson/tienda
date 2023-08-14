@@ -67,8 +67,8 @@ class _ListarComidaState extends State<ListarComida> {
                     onTap: () async {
                       await Navigator.pushNamed(context, '/editarComida',
                           arguments: {
-                            'name': snapshot.data?[index]['nombre'],
                             'uid': snapshot.data?[index]['uid'],
+                            'name': snapshot.data?[index]['nombre'],
                             'precio': snapshot.data?[index]['precio']
                           });
                       setState(() {});

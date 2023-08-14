@@ -11,6 +11,7 @@ class GuardarComida extends StatefulWidget {
 class _GuardarComidaState extends State<GuardarComida> {
   //* controlador de text edit
   TextEditingController nameController = TextEditingController(text: "");
+  TextEditingController precioController = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,16 @@ class _GuardarComidaState extends State<GuardarComida> {
               decoration:
                   const InputDecoration(hintText: 'Ingrese nueva Comida'),
             ),
+            TextField(
+              controller: precioController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(hintText: 'Precio'),
+            ),
             ElevatedButton(
                 onPressed: () async {
                   //* el ".then" se ejecuta despues de terinar el "await"
-                  await crearComida(nameController.text)
+                  await crearComida(nameController.text,
+                          double.parse(precioController.text))
                       .then((_) => Navigator.pop(context));
                 },
                 child: const Text('Guardar'))

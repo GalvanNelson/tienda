@@ -17,7 +17,7 @@ Future<List> getComida() async {
     final comida = {
       'uid': element.id,
       'nombre': data['nombre'],
-      'precio': data['precio']
+      'precio': data['precio'].toString()
     };
     getComidas.add(comida);
   }
@@ -26,8 +26,10 @@ Future<List> getComida() async {
 }
 
 //* Crear datos en la tabla "Comidas"
-Future<void> crearComida(String nameComida) async {
-  await dbTienda.collection("comidas").add({'nombre': nameComida});
+Future<void> crearComida(String nameComida, double precio) async {
+  await dbTienda
+      .collection("comidas")
+      .add({'nombre': nameComida, 'precio': precio});
 }
 
 //* Actualizar comidas
