@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:tienda/models/cart_model.dart';
+import 'package:tienda/screens/gestionar_inventario/crear_producto.dart';
 import 'package:tienda/services/firebase_options.dart';
 import 'screens/index.dart';
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const HomeScreen(),
           '/crearComida': (context) => const GuardarComida(),
-          '/editarComida': (context) => const EditarComida()
+          '/editarComida': (context) => const EditarComida(),
+          '/crearProducto': (context) => const CrearProducto()
         },
         theme: ThemeData(primarySwatch: Colors.green),
       ),

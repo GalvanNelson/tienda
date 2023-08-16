@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = <Widget>[
     //const Inventario(),
-    const ListarComida(),
+    const ListarInventario(),
     const GaleriaComida(),
     const GaleriaFireBase(),
   ];
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.food_bank), label: 'Comidas'),
+                icon: Icon(Icons.inventory), label: 'Inventario'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.food_bank_outlined), label: 'pedidos'),
             BottomNavigationBarItem(
