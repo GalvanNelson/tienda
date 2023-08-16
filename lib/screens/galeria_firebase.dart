@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:tienda/services/select_image.dart';
+import 'package:tienda/services/upload_image.dart';
 
 class GaleriaFireBase extends StatefulWidget {
   const GaleriaFireBase({super.key});
@@ -34,7 +35,20 @@ class _GaleriaFireBaseState extends State<GaleriaFireBase> {
               },
               child: const Text("Seleccionar imagen")),
           ElevatedButton(
-              onPressed: () {}, child: const Text("Subir a Firebase")),
+              onPressed: () async {
+                if (imageToUp == null) {
+                  return;
+                }
+                final upload = await uploadImage(imageToUp!);
+                if (upload) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("imagen subida correctamente")));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Error al subir la imagen")));
+                }
+              },
+              child: const Text("Subir a Firebase")),
         ],
       ),
     );
