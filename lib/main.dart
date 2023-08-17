@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:tienda/models/cart_model.dart';
 import 'package:tienda/screens/gestionar_inventario/crear_producto.dart';
+import 'package:tienda/screens/gestionar_inventario/editar_producto.dart';
 import 'package:tienda/services/firebase_options.dart';
 import 'screens/index.dart';
 
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => const HomeScreen(),
           '/crearComida': (context) => const GuardarComida(),
           '/editarComida': (context) => const EditarComida(),
-          '/crearProducto': (context) => const CrearProducto()
+          '/crearProducto': (context) => const CrearProducto(),
+          '/editarProducto': (context) => const EditarProducto()
         },
         theme: ThemeData(primarySwatch: Colors.green),
       ),

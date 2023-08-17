@@ -16,15 +16,31 @@ class _ListarInventarioState extends State<ListarInventario> {
       body: FutureBuilder(
         future: getInventario(),
         builder: (context, snapshot) {
-          return ListView.builder(
-            itemCount: snapshot.data?.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(snapshot.data?[index]['nombre']),
-                subtitle: Text(snapshot.data?[index]['precio']),
-              );
-            },
-          );
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data?.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  key: Key(snapshot.data?[index]['uid']),
+                  title: Text(snapshot.data?[index]['nombre']),
+                  subtitle: Text(snapshot.data?[index]['precio']),
+                  onTap: () async {
+                    await Navigator.pushNamed(context, '/editarProducto',
+                        arguments: {
+                          'uid': snapshot.data?[index]['uid'],
+                          'nombre': snapshot.data?[index]['nombre'],
+                          'precio': snapshot.data?[index]['precio']
+                        });
+                    setState(() {});
+                  },
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: Text('Cargando...'),
+            );
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(

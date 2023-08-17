@@ -29,3 +29,12 @@ Future<List> getInventario() async {
 
   return getProductos;
 }
+
+//* Actualizar comidas
+Future<void> actualizarProducto(
+    String uid, String newName, double newPrecio) async {
+  await dbTienda
+      .collection("Inventario")
+      .doc(uid)
+      .set({'nombre': newName, 'precio': newPrecio});
+}
