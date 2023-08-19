@@ -39,10 +39,14 @@ class _EditarProductoState extends State<EditarProducto> {
                 child: Container(
                   height: 20,
                 )),
-            TextFieldComponent(
-                textEditingController: editarPrecioProductoController,
-                inputHintText: "precio",
-                inputLabelText: "Nuevo Precio"),
+            TextField(
+              controller: editarPrecioProductoController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                  hintText: 'Precio',
+                  border: const OutlineInputBorder(),
+                  labelText: "Nuevo Precio"),
+            ),
             ElevatedButtonComponent(
               onPressed: () async {
                 await actualizarProducto(

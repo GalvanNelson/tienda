@@ -23,5 +23,3 @@ class TextFieldComponent extends StatelessWidget {
     );
   }
 }
-
-class $ {}

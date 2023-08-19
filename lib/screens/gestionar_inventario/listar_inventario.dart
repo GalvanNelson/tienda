@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tienda/services/inventario_services.dart';
-import '../../utils/datos_productos.dart';
 
 class ListarInventario extends StatefulWidget {
   const ListarInventario({super.key});
@@ -10,38 +9,64 @@ class ListarInventario extends StatefulWidget {
 }
 
 class _ListarInventarioState extends State<ListarInventario> {
+  TextEditingController buscarController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: getInventario(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data?.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  key: Key(snapshot.data?[index]['uid']),
-                  title: Text(snapshot.data?[index]['nombre']),
-                  subtitle: Text(snapshot.data?[index]['precio']),
-                  onTap: () async {
-                    await Navigator.pushNamed(context, '/editarProducto',
-                        arguments: {
-                          'uid': snapshot.data?[index]['uid'],
-                          'nombre': snapshot.data?[index]['nombre'],
-                          'precio': snapshot.data?[index]['precio']
-                        });
-                    setState(() {});
-                  },
-                );
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: buscarController,
+              decoration: const InputDecoration(hintText: "Buscar"),
+              onChanged: (value) {
+                setState(() {});
               },
-            );
-          } else {
-            return const Center(
-              child: Text('Cargando...'),
-            );
-          }
-        },
+            ),
+            Expanded(
+              child: FutureBuilder(
+                future: getInventario(),
+                builder: (context, snapshot) {
+                  List? newSnapshot = snapshot.data;
+                  if (snapshot.hasData) {
+                    if (buscarController.text.isNotEmpty) {
+                      newSnapshot = newSnapshot!
+                          .where((element) =>
+                              element['nombre'].contains(buscarController.text))
+                          .toList();
+                    }
+                    return ListView.builder(
+                      itemCount: newSnapshot?.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          key: Key(newSnapshot?[index]['uid']),
+                          title: Text(newSnapshot?[index]['nombre']),
+                          subtitle: Text(newSnapshot?[index]['precio']),
+                          onTap: () async {
+                            await Navigator.pushNamed(
+                                context, '/editarProducto',
+                                arguments: {
+                                  'uid': snapshot.data?[index]['uid'],
+                                  'nombre': snapshot.data?[index]['nombre'],
+                                  'precio': snapshot.data?[index]['precio']
+                                });
+                            setState(() {});
+                          },
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(
+                      child: Text('Cargando...'),
+                    );
+                  }
+                },
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -53,17 +78,3 @@ class _ListarInventarioState extends State<ListarInventario> {
     );
   }
 }
-
-/* class _InventarioState extends State<Inventario> {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: itemPrueba.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(itemPrueba[index]),
-        );
-      },
-    );
-  }
-} */
