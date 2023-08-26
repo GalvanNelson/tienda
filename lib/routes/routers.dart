@@ -16,5 +16,5 @@ final routers = {
   '/crearProducto': (context) => const CrearProducto(),
   '/editarProducto': (context) => const EditarProducto(),
   '/error404': (context) => const Error404(),
-  '/ventas': (context) => const RegistrarVentas()
+  '/ventas': (context) => RegistrarVentas()
 };

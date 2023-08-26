@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tienda/services/inventario_services.dart';
+import 'package:tienda/services/data_base_inventario.dart';
 
 class ListarInventario extends StatefulWidget {
   const ListarInventario({super.key});

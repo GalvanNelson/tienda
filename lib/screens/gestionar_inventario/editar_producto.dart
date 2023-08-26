@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tienda/provider/inventario_provider.dart';
-import '../../services/inventario_services.dart';
+import '../../services/data_base_inventario.dart';
 import '../../widgets/index.dart';
 
 class EditarProducto extends StatefulWidget {
