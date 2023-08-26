@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tienda/services/data_base_firebase.dart';
+import 'package:provider/provider.dart';
+import 'package:tienda/provider/inventario_provider.dart';
 import '../../services/inventario_services.dart';
 import '../../widgets/index.dart';
 
@@ -19,6 +20,7 @@ class _EditarProductoState extends State<EditarProducto> {
   Widget build(BuildContext context) {
     //* recibe el dato del item seleccionado en listaComida
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    final providerCantidad = Provider.of<InventarioProvider>(context);
 
     //* pasa el dato capturado en argumets
     editarNombreProductoController.text = arguments['nombre'];
@@ -44,7 +46,7 @@ class _EditarProductoState extends State<EditarProducto> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                   hintText: 'Precio',
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   labelText: "Nuevo Precio"),
             ),
             ElevatedButtonComponent(
@@ -56,7 +58,13 @@ class _EditarProductoState extends State<EditarProducto> {
                     .then((_) => Navigator.pop(context));
               },
               child: const Text("Actualizar"),
-            )
+            ),
+            Text('La cantidad es ${providerCantidad.cantidad}'),
+            ElevatedButton(
+                onPressed: () {
+                  providerCantidad.incrementCantidad();
+                },
+                child: const Text('+'))
           ],
         ),
       ),

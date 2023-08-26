@@ -15,7 +15,7 @@ class _ListarInventarioState extends State<ListarInventario> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             TextField(
@@ -41,6 +41,7 @@ class _ListarInventarioState extends State<ListarInventario> {
                       itemCount: newSnapshot?.length,
                       itemBuilder: (context, index) {
                         return ListTile(
+                          leading: Image.asset('assets/imagenes/avocado.png'),
                           key: Key(newSnapshot?[index]['uid']),
                           title: Text(newSnapshot?[index]['nombre']),
                           subtitle: Text(newSnapshot?[index]['precio']),
@@ -48,9 +49,9 @@ class _ListarInventarioState extends State<ListarInventario> {
                             await Navigator.pushNamed(
                                 context, '/editarProducto',
                                 arguments: {
-                                  'uid': snapshot.data?[index]['uid'],
-                                  'nombre': snapshot.data?[index]['nombre'],
-                                  'precio': snapshot.data?[index]['precio']
+                                  'uid': newSnapshot?[index]['uid'],
+                                  'nombre': newSnapshot?[index]['nombre'],
+                                  'precio': newSnapshot?[index]['precio']
                                 });
                             setState(() {});
                           },

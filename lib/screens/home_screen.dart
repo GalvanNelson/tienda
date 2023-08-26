@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tienda/screens/index.dart';
+import 'package:tienda/screens/widgets/header.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,10 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Tienda"),
-      ),
+    return HeaderScaffold(
       body: _pages[_selectIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectIndex,

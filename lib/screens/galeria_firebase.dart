@@ -15,42 +15,40 @@ class _GaleriaFireBaseState extends State<GaleriaFireBase> {
   File? imageToUp;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          imageToUp != null
-              ? Image.file(imageToUp!)
-              : Container(
-                  margin: const EdgeInsets.all(10),
-                  height: 200,
-                  width: double.infinity,
-                  color: Colors.red,
-                ),
-          ElevatedButton(
-              onPressed: () async {
-                final imagen = await getImage();
-                setState(() {
-                  imageToUp = File(imagen!.path);
-                });
-              },
-              child: const Text("Seleccionar imagen")),
-          ElevatedButton(
-              onPressed: () async {
-                if (imageToUp == null) {
-                  return;
-                }
-                final upload = await uploadImage(imageToUp!);
-                if (upload) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("imagen subida correctamente")));
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Error al subir la imagen")));
-                }
-              },
-              child: const Text("Subir a Firebase")),
-        ],
-      ),
+    return Column(
+      children: [
+        imageToUp != null
+            ? Image.file(imageToUp!)
+            : Container(
+                margin: const EdgeInsets.all(10),
+                height: 200,
+                width: double.infinity,
+                color: Colors.red,
+              ),
+        ElevatedButton(
+            onPressed: () async {
+              final imagen = await getImage();
+              setState(() {
+                imageToUp = File(imagen!.path);
+              });
+            },
+            child: const Text("Seleccionar imagen")),
+        ElevatedButton(
+            onPressed: () async {
+              if (imageToUp == null) {
+                return;
+              }
+              final upload = await uploadImage(imageToUp!);
+              if (upload) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("imagen subida correctamente")));
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Error al subir la imagen")));
+              }
+            },
+            child: const Text("Subir a Firebase")),
+      ],
     );
   }
 }
